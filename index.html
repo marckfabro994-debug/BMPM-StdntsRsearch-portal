@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMPM - Basura Mo, Points Mo | GVAHS Senior High School</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bmpm: {
+                            navy: '#0d2b45',
+                            blue: '#1d4ed8',
+                            light: '#eff6ff',
+                            gold: '#eab308',
+                            green: '#22c55e',
+                            accent: '#2563eb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="bg-bmpm-navy text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & School Branding -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white rounded-full p-1 flex items-center justify-center shadow-md border-2 border-amber-400 overflow-hidden shrink-0">
+                        <svg viewBox="0 0 200 200" class="w-full h-full">
+                            <circle cx="100" cy="100" r="95" fill="#0d2b45" stroke="#22c55e" stroke-width="8"/>
+                            <circle cx="100" cy="100" r="78" fill="none" stroke="#eab308" stroke-width="3" stroke-dasharray="4,2"/>
+                            <path d="M 60 100 A 40 40 0 0 1 120 70 L 110 60 M 120 70 L 125 85" fill="none" stroke="#eab308" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M 140 100 A 40 40 0 0 1 80 130 L 90 140 M 80 130 L 75 115" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <text x="100" y="95" font-family="Arial, sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" text-anchor="middle">BMPM</text>
+                            <text x="100" y="115" font-family="Arial, sans-serif" font-weight="700" font-size="10" fill="#eab308" text-anchor="middle">RESEARCH</text>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                            BMPM <span class="text-amber-400 text-xs sm:text-sm font-semibold bg-blue-950 px-2 py-0.5 rounded border border-amber-400/40">GVAHS SHS</span>
+                        </h1>
+                        <p class="text-xs text-blue-200 hidden sm:block">Basura Mo, Points Mo - 10-Evidence Student Portfolio Portal</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="flex space-x-1 sm:space-x-2">
+                    <button onclick="switchTab('submitTab')" id="nav-submitTab" class="nav-btn px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 bg-blue-600 text-white shadow">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Submit Portfolio</span>
+                    </button>
+                    <button onclick="switchTab('instructionsTab')" id="nav-instructionsTab" class="nav-btn px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 text-blue-200 hover:text-white hover:bg-blue-900/60">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Guide</span>
+                    </button>
+                    <button onclick="switchTab('adminTab')" id="nav-adminTab" class="nav-btn px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 text-blue-200 hover:text-white hover:bg-blue-900/60">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>Admin</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex-grow w-full">
+
+        <!-- Announcement Banner -->
+        <div class="mb-8 bg-gradient-to-r from-bmpm-navy via-blue-900 to-bmpm-navy rounded-2xl p-6 text-white shadow-xl relative overflow-hidden border border-blue-700/50">
+            <div class="absolute right-0 top-0 bottom-0 opacity-10 flex items-center pr-10 pointer-events-none">
+                <i class="fa-solid fa-images text-9xl text-white"></i>
+            </div>
+            <div class="relative z-10 max-w-2xl">
+                <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 rounded-full text-xs font-semibold mb-2 border border-amber-400/30">
+                    Gabaldon Vocational Agriculture High School
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">
+                    Basura Mo, Points Mo (BMPM)
+                </h2>
+                <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+                    Upload your <strong>10 Proof Evidences</strong> to complete your student waste management research portfolio. Real-time synced directly to the GVAHS research database!
+                </p>
+            </div>
+        </div>
+
+        <!-- TAB 1: STUDENT PORTFOLIO SUBMISSION FORM -->
+        <section id="submitTab" class="tab-content transition-opacity duration-300">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-folder-open text-bmpm-blue text-lg"></i>
+                        <h3 class="font-bold text-slate-800 text-lg">10-Evidence Student Portfolio Submission</h3>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold border border-emerald-200">
+                        <i class="fa-solid fa-wifi text-xs mr-1"></i> Live DB Sync
+                    </span>
+                </div>
+
+                <form id="submissionForm" class="p-6 sm:p-8 space-y-6" onsubmit="handleStudentSubmit(event)">
+                    <!-- Name Input -->
+                    <div>
+                        <label for="studentName" class="block text-sm font-bold text-slate-700 mb-2">
+                            Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative rounded-xl shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <input type="text" id="studentName" required
+                                class="block w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm sm:text-base transition-all"
+                                placeholder="e.g. Juan Dela Cruz">
+                        </div>
+                    </div>
+
+                    <!-- Grade and Section Input -->
+                    <div>
+                        <label for="gradeSection" class="block text-sm font-bold text-slate-700 mb-2">
+                            Grade and Section <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative rounded-xl shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <input type="text" id="gradeSection" required
+                                class="block w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm sm:text-base transition-all"
+                                placeholder="e.g. 11 - Mt. Caraballo">
+                        </div>
+                        <p class="mt-1.5 text-xs text-slate-500 flex items-center gap-1">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                            Format Example: <span class="font-semibold text-slate-700">11 - Mt. Caraballo</span>
+                        </p>
+                    </div>
+
+                    <!-- 10 Evidences Upload Area -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-bold text-slate-700">
+                                Portfolio Evidence Pictures (Upload up to 10 photos) <span class="text-red-500">*</span>
+                            </label>
+                            <span id="evidenceCounter" class="text-xs font-bold text-bmpm-blue bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
+                                0 / 10 Uploaded
+                            </span>
+                        </div>
+
+                        <!-- Multi-file quick select button -->
+                        <div class="mb-4 p-4 border-2 border-dashed border-blue-300 bg-blue-50/50 rounded-2xl text-center hover:bg-blue-50 transition-colors cursor-pointer" onclick="document.getElementById('multiFileInput').click()">
+                            <i class="fa-solid fa-images text-2xl text-bmpm-blue mb-1"></i>
+                            <p class="text-sm font-bold text-slate-800">Click to Select Multiple Evidence Photos (up to 10 files)</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Supports high-res files (50-100MB camera photos compressed instantly)</p>
+                            <input type="file" id="multiFileInput" accept="image/*" multiple class="hidden" onchange="handleMultipleFilesSelect(event)">
+                        </div>
+
+                        <!-- Grid of 10 Slots -->
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                            <!-- JS dynamically generates slots 1 through 10 -->
+                            <template id="slotTemplate">
+                                <div class="slot-box border-2 border-dashed border-slate-300 rounded-xl p-2 bg-slate-50 flex flex-col items-center justify-center min-h-[110px] relative transition-all hover:border-bmpm-blue">
+                                    <button type="button" class="remove-btn hidden absolute top-1 right-1 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center text-xs shadow z-10 hover:bg-red-700">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                    <div class="slot-empty text-center space-y-1 cursor-pointer w-full h-full flex flex-col items-center justify-center">
+                                        <div class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 text-xs font-bold shadow-sm">
+                                            <span class="slot-num">1</span>
+                                        </div>
+                                        <span class="text-[10px] font-semibold text-slate-500 block">Slot <span class="slot-num">1</span></span>
+                                    </div>
+                                    <img class="slot-img hidden w-full h-24 object-cover rounded-lg border border-slate-200 shadow-sm" alt="Evidence">
+                                    <input type="file" accept="image/*" class="slot-file hidden">
+                                </div>
+                            </template>
+                            <div id="slotsGrid" class="contents"></div>
+                        </div>
+                    </div>
+
+                    <!-- Form Buttons -->
+                    <div class="pt-4 flex items-center justify-end space-x-3 border-t border-slate-100">
+                        <button type="button" onclick="clearAllEvidences()" class="px-5 py-3 rounded-xl border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-100 transition-all">
+                            Clear Portfolio
+                        </button>
+                        <button type="submit" id="submitBtn" class="px-7 py-3 rounded-xl bg-bmpm-blue hover:bg-blue-800 text-white text-sm font-bold shadow-lg shadow-blue-500/20 transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span id="submitBtnText">Submit 10-Evidence Portfolio</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- TAB 2: INSTRUCTIONS GUIDE -->
+        <section id="instructionsTab" class="tab-content hidden transition-opacity duration-300">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h3 class="text-xl font-bold text-bmpm-navy flex items-center gap-2">
+                        <i class="fa-solid fa-circle-question text-amber-500"></i>
+                        How to Submit Your 10 Evidence Photos
+                    </h3>
+                    <p class="text-slate-600 text-sm mt-1">
+                        Follow these steps to submit your waste management participation portfolio to GVAHS SHS Research.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Step 1 -->
+                    <div class="bg-blue-50/60 rounded-2xl p-5 border border-blue-100 relative overflow-hidden">
+                        <div class="w-10 h-10 bg-bmpm-navy text-white rounded-xl flex items-center justify-center font-bold text-lg mb-4 shadow">
+                            1
+                        </div>
+                        <h4 class="font-bold text-slate-800 mb-2">Collect 10 Photo Evidences</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Take photos of your waste segregation, recycling, or cleaning activities around campus/home. You can submit up to 10 different photos.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-blue-50/60 rounded-2xl p-5 border border-blue-100 relative overflow-hidden">
+                        <div class="w-10 h-10 bg-bmpm-navy text-white rounded-xl flex items-center justify-center font-bold text-lg mb-4 shadow">
+                            2
+                        </div>
+                        <h4 class="font-bold text-slate-800 mb-2">Fill Details & Upload</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Enter your Full Name and Grade & Section (e.g., <span class="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-300">11 - Mt. Caraballo</span>). Click 'Select Multiple Evidence Photos' or fill slots 1-10 individually.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-blue-50/60 rounded-2xl p-5 border border-blue-100 relative overflow-hidden">
+                        <div class="w-10 h-10 bg-bmpm-navy text-white rounded-xl flex items-center justify-center font-bold text-lg mb-4 shadow">
+                            3
+                        </div>
+                        <h4 class="font-bold text-slate-800 mb-2">Instant Cloud Sync</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Even 50MB to 100MB camera images compress instantly in your browser before syncing directly to the Admin Dashboard for instant verification!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3 text-amber-900 text-xs sm:text-sm">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5 shrink-0"></i>
+                    <div>
+                        <strong class="font-bold block text-amber-950">GVAHS Research Requirement:</strong>
+                        Ensure your face or student ID is visible in at least one of your evidence photos so the research admins can match points accurately.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: ADMIN DASHBOARD -->
+        <section id="adminTab" class="tab-content hidden transition-opacity duration-300">
+            <!-- Admin Passcode Masked Login -->
+            <div id="adminAuthBox" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-blue-100 text-bmpm-navy rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Admin Dashboard Login</h3>
+                    <p class="text-slate-500 text-xs mt-1">Authorized GVAHS Research Team Access</p>
+                </div>
+
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div>
+                        <label for="adminPasscode" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            Admin Passcode
+                        </label>
+                        <div class="relative">
+                            <input type="password" id="adminPasscode" required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:outline-none text-sm"
+                                placeholder="Enter admin password">
+                            <button type="button" onclick="togglePasscodeVisibility()" class="absolute right-3 top-3 text-slate-400 hover:text-slate-600 text-sm">
+                                <i id="eyeIcon" class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-bmpm-navy hover:bg-blue-900 text-white rounded-xl font-bold text-sm shadow-md transition-all">
+                        Unlock Admin Access
+                    </button>
+                </form>
+            </div>
+
+            <!-- Authenticated Admin Panel -->
+            <div id="adminPanel" class="hidden space-y-6">
+                <!-- Top Toolbar -->
+                <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-bmpm-blue"></i>
+                            Student Portfolios Log (10 Evidences Each)
+                        </h3>
+                        <p class="text-xs text-slate-500">Live synchronized records from all student devices</p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 w-full sm:w-auto">
+                        <div class="relative flex-grow sm:w-64">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="searchInput" oninput="filterSubmissions()" 
+                                placeholder="Search student or section..." 
+                                class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                        </div>
+                        <button onclick="handleAdminLogout()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition-all border border-slate-200 shrink-0">
+                            <i class="fa-solid fa-right-from-bracket mr-1"></i> Lock
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Counters -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
+                        <p class="text-xs text-slate-500 font-medium">Total Portfolios</p>
+                        <p id="totalCount" class="text-2xl font-black text-bmpm-navy mt-1">0</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
+                        <p class="text-xs text-slate-500 font-medium">Approved</p>
+                        <p id="verifiedCount" class="text-2xl font-black text-emerald-600 mt-1">0</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
+                        <p class="text-xs text-slate-500 font-medium">Pending Review</p>
+                        <p id="pendingCount" class="text-2xl font-black text-amber-500 mt-1">0</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
+                        <p class="text-xs text-slate-500 font-medium">Total Evidences Uploaded</p>
+                        <p id="totalEvidencesCount" class="text-2xl font-black text-blue-600 mt-1">0</p>
+                    </div>
+                </div>
+
+                <!-- Submissions Cards / Portfolio List -->
+                <div id="submissionsListContainer" class="space-y-4">
+                    <!-- Dynamic Portfolio Cards will be rendered here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="bg-white rounded-2xl p-12 text-center border border-slate-200">
+                    <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400 text-2xl">
+                        <i class="fa-solid fa-inbox"></i>
+                    </div>
+                    <p class="text-slate-600 font-bold">No portfolios recorded yet</p>
+                    <p class="text-slate-400 text-xs mt-1">Student submissions with their 10 evidence photos will appear here automatically.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Image Modal Lightbox -->
+    <div id="imageModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeImageModal()">
+        <div class="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl p-2 overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeImageModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <img id="modalImage" src="" alt="Full Evidence Proof" class="max-h-[85vh] w-auto max-w-full rounded-xl object-contain mx-auto">
+        </div>
+    </div>
+
+    <!-- Notification Toast Modal -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 max-w-sm bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 transition-all duration-300 transform translate-y-20 opacity-0 border border-slate-700">
+        <div id="toastIcon" class="text-emerald-400 text-lg">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="text-xs sm:text-sm font-medium" id="toastMessage">
+            Notification message here
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 space-y-1">
+            <p class="font-semibold text-slate-300">BMPM - Basura Mo, Points Mo Senior High School Research Project</p>
+            <p>Gabaldon Vocational Agriculture High School (GVAHS) • Gabaldon, Nueva Ecija</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration & Initialization
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'bmpm-gvahs-research';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : {
+                apiKey: "AIzaSyDemoConfigForBMPM123456789",
+                authDomain: "bmpm-gvahs.firebaseapp.com",
+                projectId: "bmpm-gvahs",
+                storageBucket: "bmpm-gvahs.appspot.com",
+                messagingSenderId: "1234567890",
+                appId: "1:1234567890:web:demo"
+            };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Global variables state
+        let currentUser = null;
+        let submissionsList = [];
+        const evidenceArray = new Array(10).fill(null); // Array holding Base64 strings for 10 slots
+        const ADMIN_PASSCODE = "BMPM admin123";
+
+        // Public collection path strictly following Firestore rules
+        const submissionsCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'submissions');
+
+        // Authenticate User
+        async function authenticateUser() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (err) {
+                console.warn("Auth token error, falling back to anonymous auth:", err);
+                await signInAnonymously(auth);
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                listenToSubmissions();
+            }
+        });
+
+        authenticateUser();
+
+        // Initialize 10 Slot Grid elements in HTML
+        function initSlotGrid() {
+            const grid = document.getElementById('slotsGrid');
+            const template = document.getElementById('slotTemplate');
+            grid.innerHTML = '';
+
+            for (let i = 0; i < 10; i++) {
+                const clone = template.content.cloneNode(true);
+                const box = clone.querySelector('.slot-box');
+                const emptyDiv = clone.querySelector('.slot-empty');
+                const img = clone.querySelector('.slot-img');
+                const fileInput = clone.querySelector('.slot-file');
+                const removeBtn = clone.querySelector('.remove-btn');
+                const nums = clone.querySelectorAll('.slot-num');
+
+                nums.forEach(n => n.textContent = i + 1);
+
+                // Slot click handlers
+                emptyDiv.onclick = () => fileInput.click();
+                
+                fileInput.onchange = (e) => {
+                    const file = e.target.files[0];
+                    if (file) compressAndStoreFile(file, i);
+                };
+
+                removeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    clearSlot(i);
+                };
+
+                box.id = `slot-box-${i}`;
+                grid.appendChild(clone);
+            }
+        }
+
+        initSlotGrid();
+
+        // Compress high-res photos instantly with canvas
+        function compressAndStoreFile(file, index) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    // 1000px max edge gives high visual detail while ensuring tiny compressed payloads
+                    const MAX_WIDTH = 1000;
+                    const MAX_HEIGHT = 1000;
+
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            width = MAX_HEIGHT;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const base64 = canvas.toDataURL('image/jpeg', 0.70);
+                    evidenceArray[index] = base64;
+                    updateSlotUI(index, base64);
+                    updateEvidenceCounter();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Update single slot preview
+        function updateSlotUI(index, base64) {
+            const box = document.getElementById(`slot-box-${index}`);
+            if (!box) return;
+
+            const emptyDiv = box.querySelector('.slot-empty');
+            const img = box.querySelector('.slot-img');
+            const removeBtn = box.querySelector('.remove-btn');
+
+            if (base64) {
+                emptyDiv.classList.add('hidden');
+                img.src = base64;
+                img.classList.remove('hidden');
+                removeBtn.classList.remove('hidden');
+                box.classList.remove('border-dashed', 'bg-slate-50');
+                box.classList.add('border-solid', 'border-blue-400', 'bg-white');
+            } else {
+                emptyDiv.classList.remove('hidden');
+                img.src = '';
+                img.classList.add('hidden');
+                removeBtn.classList.add('hidden');
+                box.classList.add('border-dashed', 'bg-slate-50');
+                box.classList.remove('border-solid', 'border-blue-400', 'bg-white');
+            }
+        }
+
+        // Multi-file drag / batch selection (up to 10 photos)
+        window.handleMultipleFilesSelect = function(e) {
+            const files = Array.from(e.target.files);
+            if (!files.length) return;
+
+            let fileIdx = 0;
+            for (let slotIdx = 0; slotIdx < 10 && fileIdx < files.length; slotIdx++) {
+                if (!evidenceArray[slotIdx]) {
+                    compressAndStoreFile(files[fileIdx], slotIdx);
+                    fileIdx++;
+                }
+            }
+            if (fileIdx < files.length) {
+                showToast(`Filled empty slots with first ${fileIdx} photos (Max 10 total).`, "info");
+            }
+            e.target.value = '';
+        };
+
+        function clearSlot(index) {
+            evidenceArray[index] = null;
+            updateSlotUI(index, null);
+            updateEvidenceCounter();
+        }
+
+        window.clearAllEvidences = function() {
+            for (let i = 0; i < 10; i++) {
+                clearSlot(i);
+            }
+        };
+
+        function updateEvidenceCounter() {
+            const count = evidenceArray.filter(Boolean).length;
+            document.getElementById('evidenceCounter').textContent = `${count} / 10 Uploaded`;
+        }
+
+        // Realtime Firestore Listener
+        function listenToSubmissions() {
+            if (!currentUser) return;
+
+            onSnapshot(submissionsCollectionRef, (snapshot) => {
+                submissionsList = [];
+                snapshot.forEach((docSnapshot) => {
+                    submissionsList.push({
+                        id: docSnapshot.id,
+                        ...docSnapshot.data()
+                    });
+                });
+
+                // Client-side sort by timestamp descending
+                submissionsList.sort((a, b) => {
+                    const timeA = a.timestamp ? (a.timestamp.seconds || 0) : 0;
+                    const timeB = b.timestamp ? (b.timestamp.seconds || 0) : 0;
+                    return timeB - timeA;
+                });
+
+                renderAdminDashboard();
+            }, (error) => {
+                console.error("Error reading live submissions:", error);
+                showToast("Failed to sync live data.", "error");
+            });
+        }
+
+        // Student Portfolio Submission
+        window.handleStudentSubmit = async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('studentName').value.trim();
+            const gradeSection = document.getElementById('gradeSection').value.trim();
+            const activeEvidences = evidenceArray.filter(Boolean);
+
+            if (!name || !gradeSection) {
+                showToast("Please enter your Full Name and Grade & Section.", "error");
+                return;
+            }
+
+            if (activeEvidences.length === 0) {
+                showToast("Please upload at least 1 evidence picture to your portfolio.", "error");
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            const submitBtnText = document.getElementById('submitBtnText');
+            
+            submitBtn.disabled = true;
+            submitBtnText.textContent = "Uploading 10-Evidence Portfolio...";
+
+            try {
+                // Save complete portfolio array to Firestore
+                await addDoc(submissionsCollectionRef, {
+                    studentName: name,
+                    gradeSection: gradeSection,
+                    evidences: activeEvidences, // Array of Base64 strings (1 to 10)
+                    evidenceCount: activeEvidences.length,
+                    status: 'Pending',
+                    timestamp: serverTimestamp()
+                });
+
+                showToast(`Success! Submitted portfolio with ${activeEvidences.length} evidence photos!`, "success");
+
+                // Reset form
+                document.getElementById('submissionForm').reset();
+                clearAllEvidences();
+
+            } catch (err) {
+                console.error("Submission Error: ", err);
+                showToast("Error submitting portfolio. Please check connection.", "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtnText.textContent = "Submit 10-Evidence Portfolio";
+            }
+        };
+
+        // Admin Auth
+        window.handleAdminLogin = function(e) {
+            e.preventDefault();
+            const entered = document.getElementById('adminPasscode').value;
+
+            if (entered === ADMIN_PASSCODE) {
+                document.getElementById('adminAuthBox').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                showToast("Admin access unlocked", "success");
+                renderAdminDashboard();
+            } else {
+                showToast("Incorrect passcode!", "error");
+            }
+        };
+
+        window.handleAdminLogout = function() {
+            document.getElementById('adminPasscode').value = '';
+            document.getElementById('adminAuthBox').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            showToast("Admin session locked", "info");
+        };
+
+        window.togglePasscodeVisibility = function() {
+            const input = document.getElementById('adminPasscode');
+            const icon = document.getElementById('eyeIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        };
+
+        // Render Admin Portfolio Cards
+        window.renderAdminDashboard = function() {
+            const container = document.getElementById('submissionsListContainer');
+            const emptyState = document.getElementById('emptyState');
+            const searchVal = (document.getElementById('searchInput')?.value || '').toLowerCase();
+
+            if (!container) return;
+
+            const filtered = submissionsList.filter(item => 
+                (item.studentName && item.studentName.toLowerCase().includes(searchVal)) ||
+                (item.gradeSection && item.gradeSection.toLowerCase().includes(searchVal))
+            );
+
+            // Compute Stats
+            document.getElementById('totalCount').textContent = submissionsList.length;
+            document.getElementById('verifiedCount').textContent = submissionsList.filter(s => s.status === 'Approved').length;
+            document.getElementById('pendingCount').textContent = submissionsList.filter(s => s.status !== 'Approved').length;
+            
+            const totalEvs = submissionsList.reduce((acc, curr) => acc + (curr.evidenceCount || (curr.evidences ? curr.evidences.length : (curr.proofImage ? 1 : 0))), 0);
+            document.getElementById('totalEvidencesCount').textContent = totalEvs;
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            container.innerHTML = filtered.map((item) => {
+                const dateStr = item.timestamp && item.timestamp.seconds 
+                    ? new Date(item.timestamp.seconds * 1000).toLocaleString('en-US', {
+                        month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                      }) 
+                    : 'Just now';
+
+                const isApproved = item.status === 'Approved';
+                // Backward compatibility if single proofImage exists
+                const evList = item.evidences || (item.proofImage ? [item.proofImage] : []);
+
+                const imagesGridHtml = evList.map((imgUrl, idx) => `
+                    <div class="relative group">
+                        <img src="${imgUrl}" alt="Evidence ${idx + 1}"
+                            onclick="openImageModal('${imgUrl}')"
+                            class="w-full h-20 object-cover rounded-xl border border-slate-200 cursor-pointer hover:scale-105 transition-transform shadow-sm">
+                        <span class="absolute bottom-1 right-1 bg-black/60 text-white text-[9px] px-1.5 py-0.5 rounded font-mono">
+                            #${idx + 1}
+                        </span>
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 space-y-4 hover:shadow-lg transition-shadow">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                            <div>
+                                <h4 class="text-base font-extrabold text-slate-800">${escapeHtml(item.studentName || 'N/A')}</h4>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span class="px-2.5 py-0.5 bg-blue-50 text-bmpm-blue rounded-full font-bold text-xs border border-blue-200">
+                                        <i class="fa-solid fa-graduation-cap mr-1"></i>${escapeHtml(item.gradeSection || 'N/A')}
+                                    </span>
+                                    <span class="text-slate-400 text-xs">• ${dateStr}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="toggleVerifyStatus('${item.id}', '${item.status}')" 
+                                    class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                                        isApproved 
+                                        ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200' 
+                                        : 'bg-amber-100 text-amber-800 border border-amber-300 hover:bg-amber-200'
+                                    }">
+                                    <i class="fa-solid ${isApproved ? 'fa-circle-check' : 'fa-clock'} mr-1"></i>
+                                    ${isApproved ? 'Approved' : 'Mark Approved'}
+                                </button>
+                                <button onclick="deleteSubmission('${item.id}')" class="p-2 text-slate-400 hover:text-red-600 rounded-xl transition-colors" title="Delete Portfolio">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 10-Evidences Gallery Preview -->
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
+                                <span>Submitted Evidences Portfolio (${evList.length} Photos)</span>
+                                <span class="text-[11px] font-normal text-slate-400">Click photo to view enlarged</span>
+                            </p>
+                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                                ${imagesGridHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        };
+
+        window.filterSubmissions = function() {
+            renderAdminDashboard();
+        };
+
+        window.toggleVerifyStatus = async function(id, currentStatus) {
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'submissions', id);
+                const newStatus = currentStatus === 'Approved' ? 'Pending' : 'Approved';
+                await updateDoc(docRef, { status: newStatus });
+                showToast(`Status updated to ${newStatus}`, "success");
+            } catch (err) {
+                console.error("Status update error:", err);
+                showToast("Failed to update status", "error");
+            }
+        };
+
+        window.deleteSubmission = async function(id) {
+            if (!confirm("Are you sure you want to delete this student portfolio entry?")) return;
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'submissions', id);
+                await deleteDoc(docRef);
+                showToast("Portfolio deleted successfully.", "info");
+            } catch (err) {
+                console.error("Delete error:", err);
+                showToast("Failed to delete record", "error");
+            }
+        };
+
+        // Modal Lightbox
+        window.openImageModal = function(src) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('imageModal').classList.remove('hidden');
+        };
+
+        window.closeImageModal = function() {
+            document.getElementById('imageModal').classList.add('hidden');
+        };
+
+        // Navigation Tabs Switcher
+        window.switchTab = function(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                btn.classList.add('text-blue-200', 'hover:text-white', 'hover:bg-blue-900/60');
+            });
+
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.classList.remove('text-blue-200', 'hover:text-white', 'hover:bg-blue-900/60');
+                activeNav.classList.add('bg-blue-600', 'text-white', 'shadow');
+            }
+        };
+
+        // Custom Notification Toast
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMessage');
+            const iconEl = document.getElementById('toastIcon');
+
+            msgEl.textContent = message;
+
+            if (type === 'success') {
+                iconEl.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
+            } else if (type === 'error') {
+                iconEl.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-400"></i>';
+            } else {
+                iconEl.innerHTML = '<i class="fa-solid fa-circle-info text-blue-400"></i>';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Utility: HTML Escaping
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+    </script>
+</body>
+</html>
